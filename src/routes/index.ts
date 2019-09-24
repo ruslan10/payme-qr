@@ -4,6 +4,8 @@ import * as passportConfig from '../config/middleware/passport';
 import * as swaggerUi from 'swagger-ui-express';
 import AuthRouter from './AuthRouter';
 import UserRouter from './UserRouter';
+import QrRouter from './QrRouter';
+
 let swaggerDoc: Object;
 
 try {
@@ -36,6 +38,12 @@ export function init(app: express.Application): void {
      * @constructs
      */
     app.use('/auth', AuthRouter);
+
+    /**
+     * @description Forwards any requests to the /qr URI to our QrRouter
+     * @constructs
+     */
+    app.use('/qr', QrRouter);
 
     /**
      * @description
